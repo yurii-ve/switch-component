@@ -1,0 +1,102 @@
+.root {
+  -st-states: checked, disabled, focused, size(enum(small, medium, large)),
+    appearance(enum(primary, secondary));
+
+  --track-height: calc(var(--track-width) / 2.5);
+  --track-color: #9f9f9f;
+  --button-color: #fafafa;
+  --button-size: calc(var(--track-height) * 1.3);
+  --button-translate: calc(var(--button-size) / 2);
+  --button-focus-effect-color: #00000011;
+  --button-focus-effect-size: calc(var(--button-size) * 1.8);
+  --button-focus-effect-scale: 0;
+  --cusror-style: pointer;
+}
+
+.root:checked {
+  --button-translate: calc(var(--track-width) - var(--button-size) / 2);
+}
+
+.root:size(small) {
+  --track-width: 36px;
+}
+
+.root:size(medium) {
+  --track-width: 50px;
+}
+
+.root:size(large) {
+  --track-width: 64px;
+}
+
+.root:checked:appearance(primary) {
+  --button-color: #1976d1;
+  --track-color: #95bbe9;
+  --button-focus-effect-color: #1976d144;
+}
+
+.root:checked:appearance(secondary) {
+  --button-color: #dc004e;
+  --track-color: #f291a8;
+  --button-focus-effect-color: #dc004e44;
+}
+
+.root:hover:not(:disabled),
+.root:focused:not(:disabled) {
+  --button-focus-effect-scale: 1;
+}
+
+.root:disabled {
+  --track-color: #e1e1e1;
+  --button-color: #bdbdbd;
+  --cusror-style: initial;
+}
+
+.track {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: var(--track-height);
+  width: var(--track-width);
+  background-color: var(--track-color);
+  border-radius: calc(var(--track-height) / 2);
+  transition: background-color 0.1s ease-in;
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  transform: translateX(var(--button-translate));
+  transition: transform 0.15s ease-in;
+}
+
+.buttonHoverEffect {
+  position: absolute;
+  width: var(--button-focus-effect-size);
+  height: var(--button-focus-effect-size);
+  background-color: var(--button-focus-effect-color);
+  transform: scale(var(--button-focus-effect-scale));
+  border-radius: 50%;
+  transition: transform 0.15s ease-in;
+}
+
+.button {
+  position: absolute;
+  width: var(--button-size);
+  height: var(--button-size);
+  background-color: var(--button-color);
+  border-radius: 50%;
+  box-shadow: 1px 1px 4px #9f9f9f;
+  transition: background-color 0.1s ease-in;
+}
+
+.checkbox {
+  position: absolute;
+  cursor: var(--cusror-style);
+  z-index: 2;
+  width: 100%;
+  height: 150%;
+  opacity: 0;
+}
