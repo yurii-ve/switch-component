@@ -26,8 +26,7 @@ const Switch: React.FC<SwitchProps> = function Switch(props) {
       className={style(
         classes.root,
         { checked, disabled, focused, size, appearance },
-        props.className,
-        "Switch"
+        props.className
       )}
     >
       <div className={style(classes.track)}>
