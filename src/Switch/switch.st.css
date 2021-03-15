@@ -29,13 +29,13 @@
   --track-width: 64px;
 }
 
-.root:checked:appearance(primary) {
+.root:checked:appearance(primary):not(:disabled) {
   --button-color: #1976d1;
   --track-color: #95bbe9;
   --button-focus-effect-color: #1976d144;
 }
 
-.root:checked:appearance(secondary) {
+.root:checked:appearance(secondary):not(:disabled) {
   --button-color: #dc004e;
   --track-color: #f291a8;
   --button-focus-effect-color: #dc004e44;
