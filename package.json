@@ -12,6 +12,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@stylable/dom-test-kit": "^4.0.2",
     "@types/chai": "^4.2.15",
     "@types/mocha": "^8.2.1",
     "@types/react": "^17.0.3",

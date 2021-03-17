@@ -2,8 +2,8 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { expect } from "chai";
 import sinon from "sinon";
-import { classes } from "./switch.st.css";
-import Switch from "./Switch";
+import Switch, { SwitchProps } from "./Switch";
+import SwitchDriver from "./SwitchDriver";
 
 describe("Switch Component", () => {
   beforeEach(() => {
@@ -11,48 +11,44 @@ describe("Switch Component", () => {
   });
 
   it("changes checked state on click", () => {
-    const container = render(<Switch />);
-    const input = container.querySelector<HTMLInputElement>(
-      `.${classes.checkbox}`
-    );
+    const switchElement = renderSwitchComponent();
 
-    expect(input?.checked).to.be.false;
-    input?.click();
-    expect(input?.checked).to.be.true;
+    expect(switchElement.isChecked()).to.be.false;
+    switchElement.toggle();
+    expect(switchElement.isChecked()).to.be.true;
   });
 
   it("accepts checked state", () => {
-    const container = render(<Switch checked={true} />);
-    const input = container.querySelector<HTMLInputElement>(
-      `.${classes.checkbox}`
-    );
+    const switchElement = renderSwitchComponent({ checked: true });
 
-    expect(input?.checked).to.be.true;
+    expect(switchElement.isChecked()).to.be.true;
   });
 
   it("doesn't change checked state if disabled", () => {
-    const container = render(<Switch disabled />);
-    const input = container.querySelector<HTMLInputElement>(
-      `.${classes.checkbox}`
-    );
+    const switchElement = renderSwitchComponent({ disabled: true });
 
-    expect(input?.checked).to.be.false;
-    input?.click();
-    expect(input?.checked).to.be.false;
+    expect(switchElement.isDisabled()).to.be.true;
+    expect(switchElement.isChecked()).to.be.false;
+    switchElement.toggle();
+    expect(switchElement.isChecked()).to.be.false;
   });
 
   it("triggers onChange handler", () => {
-    const changeHandler = sinon.spy();
-    const container = render(<Switch onChange={() => changeHandler()} />);
-    const input = container.querySelector<HTMLInputElement>(
-      `.${classes.checkbox}`
-    );
+    const onChange = sinon.spy();
+    const switchElement = renderSwitchComponent({ onChange });
 
-    input?.click();
+    switchElement.toggle();
 
-    expect(changeHandler.calledOnce).to.be.true;
+    expect(onChange.calledOnce).to.be.true;
   });
 });
+
+function renderSwitchComponent(props: SwitchProps = {}) {
+  const container = render(<Switch {...props} />);
+  const element = new SwitchDriver(container.children[0]);
+
+  return element;
+}
 
 function render(jsx: React.ReactElement) {
   const container = document.createElement("div");
