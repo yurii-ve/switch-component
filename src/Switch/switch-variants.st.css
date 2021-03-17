@@ -1,0 +1,40 @@
+:import {
+    -st-from: './switch.st.css';
+    -st-default: Switch;
+    -st-named: --track-width, --button-color, --track-color, --button-focus-effect-color;
+}
+
+.smallSwitch {
+    -st-extends: Switch;
+    --track-width: 36px;
+}
+
+.mediumSwitch {
+    -st-extends: Switch;
+    --track-width: 50px;
+}
+
+.largeSwitch {
+    -st-extends: Switch;
+    --track-width: 64px;
+}
+
+.primarySwitch {
+    -st-extends: Switch;
+}
+
+.secondarySwitch {
+    -st-extends: Switch;
+}
+
+.primarySwitch:checked:not(:disabled) {
+    --button-color: #1976d1;
+    --track-color: #95bbe9;
+    --button-focus-effect-color: #1976d144;
+}
+
+.secondarySwitch:checked:not(:disabled) {
+    --button-color: #dc004e;
+    --track-color: #f291a8;
+    --button-focus-effect-color: #dc004e44;
+}

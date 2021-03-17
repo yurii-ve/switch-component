@@ -2,20 +2,15 @@ import React from "react";
 import { style, classes } from "./switch.st.css";
 import useSwitch from "./useSwitch";
 
-export type Size = "small" | "medium" | "large";
-export type Appearance = "primary" | "secondary";
-
 export interface SwitchProps {
   checked?: boolean;
   disabled?: boolean;
-  appearance?: Appearance;
-  size?: Size;
   onChange?: () => void;
   className?: string;
 }
 
 const Switch: React.FC<SwitchProps> = function Switch(props) {
-  const { disabled, appearance = "primary", size = "medium" } = props;
+  const { disabled } = props;
   const { checked, focused, onChange, onBlur, onFocus } = useSwitch({
     checked: props.checked,
     onChange: props.onChange,
@@ -25,7 +20,7 @@ const Switch: React.FC<SwitchProps> = function Switch(props) {
     <div
       className={style(
         classes.root,
-        { checked, disabled, focused, size, appearance },
+        { checked, disabled, focused },
         props.className
       )}
     >
