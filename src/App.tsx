@@ -6,6 +6,8 @@ import { classes as switchVariants } from "./Switch/switch-variants.st.css";
 const App: React.FC = () => {
   const [checked, setChecked] = useState(false);
 
+  //test comment
+
   return (
     <div className={style(classes.root)}>
       <Switch
