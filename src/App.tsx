@@ -7,6 +7,7 @@ const App: React.FC = () => {
   const [checked, setChecked] = useState(false);
 
   //test comment
+  //another change
 
   return (
     <div className={style(classes.root)}>
